@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "864258306799",
+    "project_id": "longevity-2-0",
+    "storage_bucket": "longevity-2-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864258306799:android:fe65f8ccd482e9e01ba11a",
+        "android_client_info": {
+          "package_name": "com.quac.inc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864258306799-um7uttvl7mr9piohaalksp8kq8q7i174.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quac.inc",
+            "certificate_hash": "9b0945a78d98228c175867683608a43e9ea8bef1"
+          }
+        },
+        {
+          "client_id": "864258306799-nosthj9k7fk50au87bkpih7puv16vik8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZjvr1FpAgE_TjqYIBhimsojZVCdtEj3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864258306799-nosthj9k7fk50au87bkpih7puv16vik8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

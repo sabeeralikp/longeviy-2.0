@@ -1,4 +1,4 @@
-package com.example.longeviy
+package com.quac.inc
 
 import io.flutter.embedding.android.FlutterActivity
 
