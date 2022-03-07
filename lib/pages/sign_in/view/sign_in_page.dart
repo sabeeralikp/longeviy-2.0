@@ -14,6 +14,12 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   bool isLoading = false;
+  loadingStateSetter() {
+    setState(() {
+      isLoading = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,24 +31,39 @@ class _SignInPageState extends State<SignInPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const HeaderWidget(),
-                  DelayedAnimation(
-                    delay: 3000,
-                    child: ElevatedButton(
-                      child: const Text('Continue with Google'),
-                      onPressed: () {
-                        final provider = Provider.of<GoogleSignInProvider>(
-                            context,
-                            listen: false);
-                        setState(() {
-                          isLoading = true;
-                        });
-                        provider.googleLogin();
-                      },
-                    ),
-                  ),
+                  ContinueWithGoogleButton(
+                      loadinStateSetter: loadingStateSetter),
                 ],
               ),
             ),
+    );
+  }
+}
+
+class ContinueWithGoogleButton extends StatefulWidget {
+  final Function loadinStateSetter;
+  const ContinueWithGoogleButton({Key? key, required this.loadinStateSetter})
+      : super(key: key);
+
+  @override
+  State<ContinueWithGoogleButton> createState() =>
+      _ContinueWithGoogleButtonState();
+}
+
+class _ContinueWithGoogleButtonState extends State<ContinueWithGoogleButton> {
+  @override
+  Widget build(BuildContext context) {
+    return DelayedAnimation(
+      delay: 3000,
+      child: ElevatedButton(
+        child: const Text('Continue with Google'),
+        onPressed: () {
+          final provider =
+              Provider.of<GoogleSignInProvider>(context, listen: false);
+          widget.loadinStateSetter();
+          provider.googleLogin();
+        },
+      ),
     );
   }
 }
