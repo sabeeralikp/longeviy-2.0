@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:longeviy/config/theme_data.dart';
+import 'package:longeviy/config/themes/theme_data.dart';
 import 'package:longeviy/providers/google_sign_in_provider.dart';
 import 'package:longeviy/providers/routes/routes.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
           theme: longevityLightTheme(context),
           initialRoute: RouteProvider.authWrapperRoute,
           onGenerateRoute: RouteProvider.generateRoute,
+          debugShowCheckedModeBanner: false,
         ),
       );
 }

@@ -1,1 +1,1 @@
-export 'sample_widget.dart';
+export 'texts.dart';
