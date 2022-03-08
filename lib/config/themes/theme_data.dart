@@ -24,7 +24,6 @@ ThemeData longevityLightTheme(BuildContext context) {
       onSurface: primaryColor,
     ),
     scaffoldBackgroundColor: backgroundColor,
-    // textTheme: GoogleFonts.montserratTextTheme(),
     textTheme: TextTheme(
       titleLarge: titleLarge,
       titleMedium: titleMedium,
@@ -35,5 +34,20 @@ ThemeData longevityLightTheme(BuildContext context) {
     ),
     elevatedButtonTheme: elevatedButtonThemeData,
     iconTheme: iconTheme,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(
+        color: primaryColor,
+        size: 20,
+      ),
+      selectedLabelStyle: GoogleFonts.montserrat(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: primaryColor,
+      ),
+      unselectedIconTheme: IconThemeData(
+        color: unSelectedWidgetColor,
+        size: 20,
+      ),
+    ),
   );
 }

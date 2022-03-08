@@ -18,7 +18,7 @@ class GlowingLogoAvatar extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: primaryColor.withOpacity(0.925),
         radius: 60,
-        backgroundImage: const AssetImage(logoPNG),
+        backgroundImage: logoAsset,
       ),
     );
   }

@@ -6,4 +6,4 @@ IconThemeData iconTheme = IconThemeData(
   size: 20.0,
 );
 
-const String logoPNG = 'assets/logos/logo 1.png';
+const AssetImage logoAsset = AssetImage('assets/logos/logo 1.png');

@@ -36,6 +36,7 @@ dependencies:
   #Assets (UI) Packages:
   cupertino_icons: ^1.0.2
   ionicons: ^0.1.2
+  google_nav_bar: ^5.0.5
 
   #Firebase Packeges:
   firebase_auth: ^3.3.7

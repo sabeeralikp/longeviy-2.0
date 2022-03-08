@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:longeviy/config/error_screen.dart';
 import 'package:longeviy/config/loading_screen.dart';
+import 'package:longeviy/providers/nav_bar_state_provider.dart';
 import 'package:longeviy/providers/routes/routes.dart';
+import 'package:provider/provider.dart';
 
 class Authenticationwrapper extends StatefulWidget {
   const Authenticationwrapper({Key? key}) : super(key: key);
@@ -20,7 +22,9 @@ class _AuthenticationwrapperState extends State<Authenticationwrapper> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingScreen();
         } else if (snapshot.hasData) {
-          return const HomePage();
+          return ChangeNotifierProvider(
+              create: (context) => NavBarStateProvider(),
+              child: const HomePage());
         } else if (snapshot.hasError) {
           Navigator.popAndPushNamed(context, '/error');
           return const ErrorScreen();
