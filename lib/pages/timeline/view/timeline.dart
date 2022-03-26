@@ -1,9 +1,12 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:longeviy/config/themes/colors.dart';
+import 'package:longeviy/config/themes/margin_padding_gap.dart';
 import 'package:longeviy/models/timeline_data.dart';
 import 'package:longeviy/packages/apis/recommender.dart';
+import 'package:longeviy/packages/text_formatting/text_formatting.dart';
 
 class Timeline extends StatefulWidget {
   final ScrollController scrollController;
@@ -20,6 +23,7 @@ class _TimelineState extends State<Timeline>
     with AutomaticKeepAliveClientMixin {
   bool keepAlive = false;
   List<TimelineDataModel?> _timelineData = [];
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   void initState() {
@@ -46,21 +50,59 @@ class _TimelineState extends State<Timeline>
     setState(() {});
   }
 
+  Text getGreeting() {
+    int hour = DateTime.now().hour;
+    String greeting;
+    if (hour < 12) {
+      greeting = 'Morning';
+    } else if (hour < 17) {
+      greeting = 'Afternoon';
+    } else {
+      greeting = 'Evening';
+    }
+    return Text(
+      'Good $greeting,',
+      style: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        color: primaryColor.withOpacity(0.2),
+      ),
+    );
+  }
+
   @override
   bool get wantKeepAlive => keepAlive;
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return ListView(
-      controller: widget.scrollController,
-      children: [
-        ..._timelineData
-            .map((e) => TimelinePostContainer(
-                  timelineData: e,
-                ))
-            .toList()
-      ],
+    return Padding(
+      padding: pageXTPadding,
+      child: ListView(
+        controller: widget.scrollController,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              getGreeting(),
+              gapYMedium,
+              Text(
+                user.displayName!.split(' ')[0].toTitleCase(),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  color: primaryColor,
+                ),
+              )
+            ],
+          ),
+          ..._timelineData
+              .map((e) => TimelinePostContainer(
+                    timelineData: e,
+                  ))
+              .toList()
+        ],
+      ),
     );
   }
 }
@@ -75,19 +117,11 @@ class TimelinePostContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(12),
+      margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: whiteAccent,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey[300]!,
-            offset: const Offset(4, 4),
-            blurRadius: 4,
-            spreadRadius: 1,
-          ),
-        ],
       ),
       child: Column(
         children: [

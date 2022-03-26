@@ -6,3 +6,5 @@ const gapYLarge = SizedBox(height: 16.0);
 
 const navButtonPadding = EdgeInsets.symmetric(horizontal: 12, vertical: 12);
 const double navButtonGap = 10;
+
+const pageXTPadding = EdgeInsets.only(top: 24, right: 24, left: 24);
