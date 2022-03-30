@@ -31,6 +31,7 @@ ThemeData longevityLightTheme(BuildContext context) {
       bodyMedium: bodyMedium,
       bodyLarge: bodyLarge,
       labelSmall: labelSmall,
+      displayLarge: displayLarge,
     ),
     elevatedButtonTheme: elevatedButtonThemeData,
     iconTheme: iconTheme,

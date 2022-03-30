@@ -7,6 +7,7 @@ import 'package:longeviy/config/themes/margin_padding_gap.dart';
 import 'package:longeviy/pages/timeline/timeline.dart';
 import 'package:longeviy/pages/profile/profile.dart';
 import 'package:longeviy/providers/nav_bar_state_provider.dart';
+import 'package:longeviy/providers/recommendation_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/nav_buttons.dart';
@@ -100,55 +101,59 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: PageView.builder(
-        onPageChanged: (page) {
-          setState(() {
-            selectedIndex = page;
-          });
-          Provider.of<NavBarStateProvider>(context, listen: false)
-              .setNavState(true);
-        },
-        controller: pageController,
-        itemBuilder: (context, position) {
-          return getPage(scrollController, position);
-        },
-        itemCount: 4,
-      ),
-      bottomNavigationBar: ScrollToHideWidget(
-        scrollController: scrollController,
-        child: SafeArea(
-          child: Container(
-            margin: const EdgeInsets.only(left: 32, right: 32, bottom: 16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: const BorderRadius.all(Radius.circular(100)),
-              boxShadow: [
-                BoxShadow(
-                  spreadRadius: -10,
-                  blurRadius: 60,
-                  color: Colors.black.withOpacity(.4),
-                  offset: const Offset(0, 25),
-                )
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-              child: GNav(
-                tabs: [
-                  navButton(selectedIndex, 0),
-                  navButton(selectedIndex, 1),
-                  navButton(selectedIndex, 2),
-                  navButton(selectedIndex, 3),
+    return ChangeNotifierProvider(
+      create: (_) =>
+          RecommendationProvider(title: 'How Much Exercise Should You Do?'),
+      child: Scaffold(
+        extendBody: true,
+        body: PageView.builder(
+          onPageChanged: (page) {
+            setState(() {
+              selectedIndex = page;
+            });
+            Provider.of<NavBarStateProvider>(context, listen: false)
+                .setNavState(true);
+          },
+          controller: pageController,
+          itemBuilder: (context, position) {
+            return getPage(scrollController, position);
+          },
+          itemCount: 4,
+        ),
+        bottomNavigationBar: ScrollToHideWidget(
+          scrollController: scrollController,
+          child: SafeArea(
+            child: Container(
+              margin: const EdgeInsets.only(left: 32, right: 32, bottom: 16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(Radius.circular(100)),
+                boxShadow: [
+                  BoxShadow(
+                    spreadRadius: -10,
+                    blurRadius: 60,
+                    color: Colors.black.withOpacity(.4),
+                    offset: const Offset(0, 25),
+                  )
                 ],
-                selectedIndex: selectedIndex,
-                onTabChange: (index) {
-                  setState(() {
-                    selectedIndex = index;
-                  });
-                  pageController.jumpToPage(index);
-                },
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                child: GNav(
+                  tabs: [
+                    navButton(selectedIndex, 0),
+                    navButton(selectedIndex, 1),
+                    navButton(selectedIndex, 2),
+                    navButton(selectedIndex, 3),
+                  ],
+                  selectedIndex: selectedIndex,
+                  onTabChange: (index) {
+                    setState(() {
+                      selectedIndex = index;
+                    });
+                    pageController.jumpToPage(index);
+                  },
+                ),
               ),
             ),
           ),

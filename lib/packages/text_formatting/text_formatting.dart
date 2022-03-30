@@ -8,7 +8,7 @@ String? convertToTitleCase(String? text) {
   }
 
   // Split string into multiple words
-  final List<String> words = text.split(' ');
+  final List<String> words = text.toLowerCase().split(' ');
 
   // Capitalize first letter of each words
   final capitalizedWords = words.map((word) {
