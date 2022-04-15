@@ -9,7 +9,7 @@ import 'icon_theme.dart';
 
 ThemeData longevityLightTheme(BuildContext context) {
   return ThemeData(
-    androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+    useMaterial3: true,
     colorScheme: ColorScheme(
       brightness: Brightness.light,
       primary: primaryColor,

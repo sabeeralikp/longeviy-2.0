@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/widgets.dart';
 import 'package:longeviy/models/timeline_data.dart';
 import 'package:longeviy/packages/apis/recommender.dart';
